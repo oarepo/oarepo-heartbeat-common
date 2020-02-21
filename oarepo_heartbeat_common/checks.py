@@ -6,7 +6,7 @@
 # modify it under the terms of the MIT License; see LICENSE file for more
 # details.
 
-"""Common heartbeat checks for OArepo instances"""
+"""Common heartbeat checks for OArepo instances."""
 import time
 
 from invenio_db import db
@@ -44,6 +44,7 @@ def check_db_readiness():
 
 
 def check_elasticsearch(*args, **kwargs):
+    """Checks if configured ElasticSearch cluster is reachable."""
     try:
         t1 = time.time()
         current_search_client.indices.get_alias("*", request_timeout=10)

@@ -6,7 +6,7 @@
 # modify it under the terms of the MIT License; see LICENSE file for more
 # details.
 
-"""Common heartbeat checks for OArepo instances"""
+"""Common heartbeat checks for OArepo instances."""
 import click
 from flask.cli import with_appcontext
 
@@ -48,6 +48,7 @@ def _print_ready_result(status):
 @liveliness.command('db')
 @with_appcontext
 def db_healthy():
+    """Checks if configured DB is healthy."""
     _, status, err = check_db_health()
     _print_health_result(status, err)
 
@@ -55,6 +56,7 @@ def db_healthy():
 @liveliness.command('es')
 @with_appcontext
 def es_healthy():
+    """Checks if configured ElasticSearch cluster is healthy."""
     _, status, _ = check_elasticsearch()
     _print_health_result(status)
 
@@ -62,6 +64,7 @@ def es_healthy():
 @readiness.command('db')
 @with_appcontext
 def db_ready():
+    """Checks if configured DB is ready to accept connections."""
     _, status, _ = check_db_readiness()
     _print_ready_result(status)
 
@@ -69,5 +72,6 @@ def db_ready():
 @readiness.command('es')
 @with_appcontext
 def es_ready():
+    """Checks if configured ElasticSearch cluster is ready."""
     _, status, _ = check_db_readiness()
     _print_ready_result(status)
