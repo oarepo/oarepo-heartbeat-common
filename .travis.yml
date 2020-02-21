@@ -64,7 +64,7 @@ deploy:
   provider: pypi
   user: "__token__"
   password:
-    secure: "changeme"
+    secure: "m/iBla6V5Fuu1Fw1NfmtgQ5bHIE4hdyOHFGE4GrHfXJ1V9C47dWA0WIdkux9SCFWR9fi5g4eW5kjexLw6ivXXYAqgSddO4QEmcLqKNbvvKhZLfbGHQrdH/n2uRIgDQshTDTqCFHVnFfyVTl7TScvSJw7LmA7eMx3S/h/hGNTUdsS5WNstbQvHuXuleZQ2T3q7hnq1nSfM782VAfhRtwEUYEngx5CcYSyrJQcCuN6KQ/Xm+kseg62a7foyeb28F0m6JvxtyTVj2t8unS3XWAJ3UCtU6KPxmijyNXDqy8+AnZ7S8AW7KTEhrEoD0dmdxc4LxmaaGrU9JDkyz/LMMhFUMI1uMnmZm5Ppjqj0x2X8RSYGxEpkGQ/2nxY/1SDwSTtpdY4e4yfTVFC7alqJLr8sbB5Uev/1cRs1N/CWyhmXmHzsvKf+w1uc53OLpJGpws0rB3Edn+e20kBzPjRvwdKNzZvrwDF2+VYiZpWA/VVS31JqGAzIMeUPPtR3dvAw+gDWlIxicuXq66nFSA5nsVAJ8Mdrncf1OEX3v7eyJEfW3TeqAPQIbeJg55EbIhoqgfLEyc/5KK82xSCrqNO7FGTSRBmkpkax16rQOLu2ekf2tnmZ3OXNOPt4J9ci3EyrP3LH38v9yQjhSpVZQiu0rDjtKScvYxVZOQedFqkwDNfmz8="
   on:
     tags: true
   all_branches: true
