@@ -11,6 +11,7 @@ import time
 
 from invenio_db import db
 from invenio_search import current_search_client
+from sqlalchemy import text
 from sqlalchemy_utils import database_exists
 
 from oarepo_heartbeat_common.errors import DatabaseUnhealthy, \
@@ -19,12 +20,14 @@ from oarepo_heartbeat_common.errors import DatabaseUnhealthy, \
 
 def check_db_health():
     """Checks if configured DB is healthy."""
+    query = text('SELECT COUNT(*) from alembic_version')
+
     if not database_exists(str(db.engine.url)):
         return 'database', False, {'error': DatabaseUninitialized()}
 
     try:
         t1 = time.time()
-        res = db.engine.execute('SELECT COUNT(*) from alembic_version').fetchall()
+        res = db.engine.execute(query).fetchall()
         t2 = time.time()
         if len(res) != 1 or res[0] == 0:
             return 'database', False, {'error': DatabaseUnhealthy()}
