@@ -14,8 +14,10 @@
 #  pip install -e .[all]
 #  check-manifest -u
 
-include .dockerignore
-include .editorconfig
-include .tx/config
-prune docs/_build
-recursive-include oarepo_heartbeat_common/translations *.po *.pot *.mo
+recursive-include oarepo_heartbeat_common *.py
+include LICENSE
+prune tests
+exclude *.sh
+exclude pytest.ini
+include *.rst
+exclude *.txt
