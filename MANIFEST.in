@@ -17,6 +17,7 @@
 recursive-include oarepo_heartbeat_common *.py
 include LICENSE
 prune tests
+exclude .editorconfig
 exclude *.sh
 exclude pytest.ini
 include *.rst
