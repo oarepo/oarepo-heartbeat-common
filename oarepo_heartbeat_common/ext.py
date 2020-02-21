@@ -12,7 +12,8 @@ from __future__ import absolute_import, print_function
 
 from oarepo_heartbeat import liveliness_probe, readiness_probe
 
-from oarepo_heartbeat_common.checks import check_db_readiness, check_db_health, check_elasticsearch
+from oarepo_heartbeat_common.checks import check_db_health, \
+    check_db_readiness, check_elasticsearch
 
 
 def connect_liveliness_checks():

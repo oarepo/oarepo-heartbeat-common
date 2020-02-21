@@ -13,7 +13,8 @@ from invenio_db import db
 from invenio_search import current_search_client
 from sqlalchemy_utils import database_exists
 
-from oarepo_heartbeat_common.errors import DatabaseUninitialized, DatabaseUnhealthy
+from oarepo_heartbeat_common.errors import DatabaseUnhealthy, \
+    DatabaseUninitialized
 
 
 def check_db_health():

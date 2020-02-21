@@ -10,7 +10,8 @@
 import click
 from flask.cli import with_appcontext
 
-from oarepo_heartbeat_common.checks import check_db_health, check_elasticsearch, check_db_readiness
+from oarepo_heartbeat_common.checks import check_db_health, \
+    check_db_readiness, check_elasticsearch
 from oarepo_heartbeat_common.errors import DatabaseUninitialized
 
 
