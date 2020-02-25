@@ -68,7 +68,7 @@ setup(
     include_package_data=True,
     platforms='any',
     entry_points={
-        'console_scripts': [
+        'flask.commands': [
             'heartbeat = oarepo_heartbeat_common.cli:heartbeat',
         ],
         'invenio_base.apps': [
