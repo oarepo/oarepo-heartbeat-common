@@ -11,7 +11,7 @@ import click
 from flask.cli import with_appcontext
 
 from oarepo_heartbeat_common.checks import check_db_health, \
-    check_db_readiness, check_elasticsearch
+    check_db_readiness, check_elasticsearch, check_redis
 from oarepo_heartbeat_common.errors import DatabaseUninitialized
 
 
@@ -62,6 +62,14 @@ def es_healthy():
     _print_health_result(status)
 
 
+@liveliness.command('redis')
+@with_appcontext
+def redis_healthy():
+    """Checks if configured Redis instance is healthy."""
+    _, status, err = check_redis()
+    _print_health_result(status, err)
+
+
 @readiness.command('db')
 @with_appcontext
 def db_ready():
@@ -75,4 +83,12 @@ def db_ready():
 def es_ready():
     """Checks if configured ElasticSearch cluster is ready."""
     _, status, _ = check_db_readiness()
+    _print_ready_result(status)
+
+
+@readiness.command('redis')
+@with_appcontext
+def redis_ready():
+    """Checks if configured Redis instance is ready to accept connections."""
+    _, status, _ = check_redis()
     _print_ready_result(status)

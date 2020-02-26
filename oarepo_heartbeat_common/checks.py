@@ -9,8 +9,10 @@
 """Common heartbeat checks for OArepo instances."""
 import time
 
+from flask import current_app
 from invenio_db import db
 from invenio_search import current_search_client
+from redis import StrictRedis
 from sqlalchemy import text
 from sqlalchemy_utils import database_exists
 
@@ -55,4 +57,16 @@ def check_elasticsearch(*args, **kwargs):
         t2 = time.time()
         return 'elasticsearch', True, {'time': t2 - t1}
     except Exception as e:
-        return 'elasticsearch', False, {'error': str(e)}
+        return 'elasticsearch', False, {'error': e}
+
+
+def check_redis(*args, **kwargs):
+    """Checks if configured Redis instance is pingable."""
+    try:
+        r = StrictRedis.from_url(current_app.config['CACHE_REDIS_URL'])
+        t1 = time.time()
+        res = r.ping()
+        t2 = time.time()
+        return 'redis', res, {'time': t2 - t1}
+    except (ConnectionError, ValueError) as e:
+        return 'redis', False, {'error': e}

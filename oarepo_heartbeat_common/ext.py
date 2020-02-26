@@ -13,19 +13,21 @@ from __future__ import absolute_import, print_function
 from oarepo_heartbeat import liveliness_probe, readiness_probe
 
 from oarepo_heartbeat_common.checks import check_db_health, \
-    check_db_readiness, check_elasticsearch
+    check_db_readiness, check_elasticsearch, check_redis
 
 
 def connect_liveliness_checks():
     """Connect checks to a liveliness probe signal."""
     liveliness_probe.connect(check_db_health)
     liveliness_probe.connect(check_elasticsearch)
+    liveliness_probe.connect(check_redis)
 
 
 def connect_readiness_checks():
     """Connect checks to a readiness probe signal."""
     readiness_probe.connect(check_db_readiness)
     readiness_probe.connect(check_elasticsearch)
+    readiness_probe.connect(check_redis)
 
 
 class OARepoHeartbeatCommon(object):
