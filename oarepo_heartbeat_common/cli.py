@@ -30,7 +30,9 @@ def liveliness():
     """Liveliness check command group."""
 
 
-def _print_health_result(status, err=None):
+def _print_health_result(status, details=None):
+    err = details.get('error', None)
+
     if status:
         click.echo('healthy')
     elif isinstance(err, DatabaseUninitialized):
@@ -66,8 +68,8 @@ def es_healthy():
 @with_appcontext
 def redis_healthy():
     """Checks if configured Redis instance is healthy."""
-    _, status, err = check_redis()
-    _print_health_result(status, err)
+    _, status, details = check_redis()
+    _print_health_result(status, details)
 
 
 @readiness.command('db')
