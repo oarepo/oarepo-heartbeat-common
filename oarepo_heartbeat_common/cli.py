@@ -31,7 +31,10 @@ def liveliness():
 
 
 def _print_health_result(status, details=None):
-    err = details.get('error', None)
+    if details:
+        err = details.get('error', None)
+    else:
+        err = None
 
     if status:
         click.echo('healthy')
