@@ -20,7 +20,7 @@ from oarepo_heartbeat_common.errors import DatabaseUnhealthy, \
     DatabaseUninitialized
 
 
-def check_db_health():
+def check_db_health(*args, **kwargs):
     """Checks if configured DB is healthy."""
     query = text('SELECT COUNT(*) from alembic_version')
 
@@ -38,7 +38,7 @@ def check_db_health():
         return 'database', False, {'error': e}
 
 
-def check_db_readiness():
+def check_db_readiness(*args, **kwargs):
     """Checks if configured DB is ready to accept connections."""
     try:
         t1 = time.time()
