@@ -77,6 +77,9 @@ setup(
         'invenio_base.blueprints': [
             'oarepo-heartbeat = oarepo_heartbeat.views:blueprint',
         ],
+        'invenio_base.api_blueprints': [
+            'oarepo-heartbeat = oarepo_heartbeat.views:blueprint',
+        ]
     },
     extras_require=extras_require,
     install_requires=install_requires,

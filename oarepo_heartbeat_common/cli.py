@@ -87,7 +87,7 @@ def db_ready():
 @with_appcontext
 def es_ready():
     """Checks if configured ElasticSearch cluster is ready."""
-    _, status, _ = check_db_readiness()
+    _, status, _ = check_elasticsearch()
     _print_ready_result(status)
 
 
