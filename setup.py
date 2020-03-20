@@ -74,6 +74,9 @@ setup(
         'invenio_base.apps': [
             'oarepo_heartbeat_common = oarepo_heartbeat_common:OARepoHeartbeatCommon',
         ],
+        'invenio_base.api_apps': [
+            'oarepo_heartbeat_common = oarepo_heartbeat_common:OARepoHeartbeatCommon',
+        ],
         'invenio_base.blueprints': [
             'oarepo-heartbeat = oarepo_heartbeat.views:blueprint',
         ],
