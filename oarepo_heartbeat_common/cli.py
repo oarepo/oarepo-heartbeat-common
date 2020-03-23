@@ -38,7 +38,7 @@ def _print_health_result(status, details=None):
 
     if status:
         click.echo('healthy')
-    elif isinstance(err, DatabaseUninitialized):
+    elif DatabaseUninitialized().description in err:
         click.echo('uninitialized')
     else:
         click.echo('unhealthy')

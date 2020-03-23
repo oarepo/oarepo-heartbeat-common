@@ -25,17 +25,17 @@ def check_db_health(*args, **kwargs):
     query = text('SELECT COUNT(*) from alembic_version')
 
     if not database_exists(str(db.engine.url)):
-        return 'database', False, {'error': DatabaseUninitialized()}
+        return 'database', False, {'error': str(DatabaseUninitialized())}
 
     try:
         t1 = time.time()
         res = db.engine.execute(query).fetchall()
         t2 = time.time()
         if len(res) != 1 or res[0] == 0:
-            return 'database', False, {'error': DatabaseUnhealthy()}
+            return 'database', False, {'error': str(DatabaseUnhealthy())}
         return 'database', True, {'time': t2 - t1}
     except Exception as e:
-        return 'database', False, {'error': e}
+        return 'database', False, {'error': str(e)}
 
 
 def check_db_readiness(*args, **kwargs):
@@ -46,7 +46,7 @@ def check_db_readiness(*args, **kwargs):
         t2 = time.time()
         return 'database', True, {'time': t2 - t1}
     except Exception as e:
-        return 'database', False, {'error': e}
+        return 'database', False, {'error': str(e)}
 
 
 def check_elasticsearch(*args, **kwargs):
@@ -57,7 +57,7 @@ def check_elasticsearch(*args, **kwargs):
         t2 = time.time()
         return 'elasticsearch', True, {'time': t2 - t1}
     except Exception as e:
-        return 'elasticsearch', False, {'error': e}
+        return 'elasticsearch', False, {'error': str(e)}
 
 
 def check_redis(*args, **kwargs):
@@ -69,4 +69,4 @@ def check_redis(*args, **kwargs):
         t2 = time.time()
         return 'redis', res, {'time': t2 - t1}
     except (ConnectionError, ValueError) as e:
-        return 'redis', False, {'error': e}
+        return 'redis', False, {'error': str(e)}
