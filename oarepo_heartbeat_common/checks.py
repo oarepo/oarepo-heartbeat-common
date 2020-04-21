@@ -14,18 +14,13 @@ from invenio_db import db
 from invenio_search import current_search_client
 from redis import StrictRedis
 from sqlalchemy import text
-from sqlalchemy_utils import database_exists
 
-from oarepo_heartbeat_common.errors import DatabaseUnhealthy, \
-    DatabaseUninitialized
+from oarepo_heartbeat_common.errors import DatabaseUnhealthy
 
 
 def check_db_health(*args, **kwargs):
     """Checks if configured DB is healthy."""
     query = text('SELECT COUNT(*) from alembic_version')
-
-    if not database_exists(str(db.engine.url)):
-        return 'database', False, {'error': str(DatabaseUninitialized())}
 
     try:
         t1 = time.time()
